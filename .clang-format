@@ -1,0 +1,74 @@
+---
+# We'll use defaults from the LLVM style, but with 4 columns indentation.
+BasedOnStyle: LLVM
+IndentWidth: 4
+---
+Language: Cpp
+
+AlwaysBreakTemplateDeclarations: Yes
+AlwaysBreakAfterReturnType: None
+AlwaysBreakAfterDefinitionReturnType: None
+
+AlignEscapedNewlines: Right
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: true
+AlignAfterOpenBracket: Align
+AlignTrailingComments: true
+AlignOperands: true
+
+DerivePointerAlignment: false
+
+AllowShortFunctionsOnASingleLine: None
+
+AccessModifierOffset: -4
+
+BinPackArguments: true
+BinPackParameters: true
+
+BreakBeforeBraces: Custom
+BreakBeforeTernaryOperators: true
+BreakBeforeBinaryOperators: All
+BreakConstructorInitializers: BeforeComma
+
+BraceWrapping:
+  # AfterCaseLabel: false
+  AfterClass: true
+  AfterControlStatement: false
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: true
+  AfterUnion: true
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+  AfterExternBlock: false
+
+PointerAlignment: Left
+
+ColumnLimit: 100
+
+SpacesInSquareBrackets: true
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeParens: ControlStatements
+SpaceAfterTemplateKeyword: true
+SpaceBeforeCtorInitializerColon: true
+# SpacesBeforeTrailingComments: 4
+
+Cpp11BracedListStyle: false
+
+# Потому что не люблю возвращаемый тип на своей строке
+PenaltyReturnTypeOnItsOwnLine: 999
+PenaltyBreakAssignment: 999
+PenaltyBreakBeforeFirstCallParameter: 999
+
+SortIncludes: false
+SortUsingDeclarations: false
+
+Standard: Cpp11
+
+UseTab: Never
+
