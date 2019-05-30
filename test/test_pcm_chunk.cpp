@@ -10,6 +10,7 @@ TEST(PcmChunk, test_pcm_chunk_operator_less)
     Pcm::Chunk b{ bData, sizeof(bData), 15 };
 
     ASSERT_TRUE(a < b);
+    ASSERT_FALSE(b < a);
 }
 
 int main(int argc, char** argv)
