@@ -1,17 +1,21 @@
 #include <PcmMixer.hpp>
 
-PcmMixer::PcmMixer()
+namespace Pcm {
+
+Mixer::Mixer()
 {}
 
-PcmMixer::~PcmMixer()
+Mixer::~Mixer()
 {}
 
-void PcmMixer::SetOnChunkReadyCallback(const std::function<OnChunkReadyCallback>& callback)
+void Mixer::SetOnChunkReadyCallback(const std::function<OnChunkReadyCallback>& callback)
 {
     callback_ = callback;
 }
 
-const std::function<PcmMixer::OnChunkReadyCallback>& PcmMixer::GetOnChunkReadyCallback() const
+const std::function<Mixer::OnChunkReadyCallback>& Mixer::GetOnChunkReadyCallback() const
 {
     return callback_;
 }
+
+} // namespace Pcm

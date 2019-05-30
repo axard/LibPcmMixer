@@ -4,7 +4,7 @@
 class PcmMixerFixture : public ::testing::Test
 {
 public:
-    PcmMixer mixer;
+    Pcm::Mixer mixer;
 
     PcmMixerFixture()
     {}
