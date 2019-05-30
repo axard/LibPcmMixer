@@ -13,11 +13,19 @@ struct Chunk
     std::size_t               Timestamp;
 
     Chunk(const std::uint8_t* data, std::size_t size, std::size_t timestamp)
-        : Data(size)
+        : Data(data, data + size)
         , Timestamp(timestamp)
-    {
-        std::copy(data, data + size, Data.begin());
-    }
+    {}
+
+    Chunk(std::size_t size, std::size_t timestamp)
+        : Data(size, 0)
+        , Timestamp(timestamp)
+    {}
+
+    Chunk(Chunk&& other)
+        : Data(std::move(other.Data))
+        , Timestamp(other.Timestamp)
+    {}
 };
 
 bool operator<(const Chunk& a, const Chunk& b)
