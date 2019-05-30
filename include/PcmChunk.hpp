@@ -1,0 +1,30 @@
+#ifndef PCMCHUNK_H
+#define PCMCHUNK_H
+
+#include <vector>
+#include <cstdint>
+#include <algorithm>
+
+namespace Pcm {
+
+struct Chunk
+{
+    std::vector<std::uint8_t> Data;
+    std::size_t               Timestamp;
+
+    Chunk(const std::uint8_t* data, std::size_t size, std::size_t timestamp)
+        : Data(size)
+        , Timestamp(timestamp)
+    {
+        std::copy(data, data + size, Data.begin());
+    }
+};
+
+bool operator<(const Chunk& a, const Chunk& b)
+{
+    return a.Timestamp < b.Timestamp;
+}
+
+} // namespace Pcm
+
+#endif /* PCMCHUNK_H */
