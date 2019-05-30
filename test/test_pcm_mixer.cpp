@@ -8,9 +8,6 @@ public:
 
     PcmMixerFixture()
     {}
-
-    void callback(const uint8_t* data, size_t size, size_t timestamp)
-    {}
 };
 
 void callback(const uint8_t* data, size_t size, size_t timestamp)
