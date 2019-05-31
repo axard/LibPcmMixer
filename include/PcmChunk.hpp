@@ -15,12 +15,14 @@ struct Chunk
     std::size_t               Timestamp;
 
     Chunk(const std::uint8_t* data, std::size_t size, std::size_t timestamp);
+    Chunk(std::size_t size, std::size_t timestamp);
 
     Chunk(Chunk&& other) noexcept;
 
     bool Complete() const;
 
     std::size_t Space() const;
+    std::size_t Size() const;
 };
 
 bool operator<(const Chunk& a, const Chunk& b);
