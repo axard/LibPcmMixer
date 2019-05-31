@@ -55,3 +55,32 @@ add_test(NAME test_pcm_chunk
   WORKING_DIRECTORY bin
   COMMAND test_pcm_chunk
   )
+
+# Pcm::Channel
+# ------------------------------------------------------------------------------
+
+add_executable(test_pcm_channel
+  test_pcm_channel.cpp
+  )
+
+target_compile_options(test_pcm_channel
+  PRIVATE
+  -Wall -std=c++11 -O0)
+
+target_include_directories(test_pcm_channel
+  PRIVATE
+  ${PROJECT_INCLUDE_DIR}
+  ${GTEST_INCLUDE_DIR}
+  )
+
+target_link_libraries(test_pcm_channel
+  PRIVATE
+  pcmmix
+  ${GTEST_LIBRARIES}
+  Threads::Threads
+  )
+
+add_test(NAME test_pcm_channel
+  WORKING_DIRECTORY bin
+  COMMAND test_pcm_channel
+  )

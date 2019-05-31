@@ -1,5 +1,6 @@
 add_library(pcmmix STATIC SHARED
   PcmMixer.cpp
+  PcmChannel.cpp
   PcmChunk.cpp)
 
 target_include_directories(pcmmix
