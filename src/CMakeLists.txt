@@ -1,5 +1,6 @@
 add_library(pcmmix STATIC SHARED
-  PcmMixer.cpp)
+  PcmMixer.cpp
+  PcmChunk.cpp)
 
 target_include_directories(pcmmix
   PRIVATE

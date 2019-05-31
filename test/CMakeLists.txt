@@ -46,6 +46,7 @@ target_include_directories(test_pcm_chunk
 
 target_link_libraries(test_pcm_chunk
   PRIVATE
+  pcmmix
   ${GTEST_LIBRARIES}
   Threads::Threads
   )

@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <algorithm>
 
+#include <Pcm.hpp>
+
 namespace Pcm {
 
 struct Chunk
@@ -12,26 +14,16 @@ struct Chunk
     std::vector<std::uint8_t> Data;
     std::size_t               Timestamp;
 
-    Chunk(const std::uint8_t* data, std::size_t size, std::size_t timestamp)
-        : Data(data, data + size)
-        , Timestamp(timestamp)
-    {}
+    Chunk(const std::uint8_t* data, std::size_t size, std::size_t timestamp);
 
-    Chunk(std::size_t size, std::size_t timestamp)
-        : Data(size, 0)
-        , Timestamp(timestamp)
-    {}
+    Chunk(Chunk&& other) noexcept;
 
-    Chunk(Chunk&& other)
-        : Data(std::move(other.Data))
-        , Timestamp(other.Timestamp)
-    {}
+    bool Complete() const;
+
+    std::size_t Space() const;
 };
 
-bool operator<(const Chunk& a, const Chunk& b)
-{
-    return a.Timestamp < b.Timestamp;
-}
+bool operator<(const Chunk& a, const Chunk& b);
 
 } // namespace Pcm
 
