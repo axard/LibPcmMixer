@@ -41,7 +41,7 @@ std::size_t Chunk::Size() const
 
 bool operator<(const Chunk& a, const Chunk& b)
 {
-    return a.Timestamp < b.Timestamp;
+    return a.Size() < b.Size();
 }
 
 } // namespace Pcm
