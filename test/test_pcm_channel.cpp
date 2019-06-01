@@ -49,6 +49,35 @@ TEST(test_pcm_channel, push_to_empty_channel_lt_chunk_size_and_nonzero_timestamp
     ASSERT_TRUE(memcmp(chunk.Data.data() + timestamp * Pcm::SAMPLE_SIZE, data, size) == 0);
 }
 
+TEST(test_pcm_channel, push_to_empty_channel_full_chunk_and_nonzero_timestamp_lt_chunk_size)
+{
+    uint8_t data[ Pcm::CHUNK_SIZE ];
+    size_t  size      = sizeof(data);
+    size_t  timestamp = DEFAULT_SIZE;
+
+    size_t quietSize = DEFAULT_SIZE * Pcm::SAMPLE_SIZE;
+
+    std::fill(data, data + size, DEFAULT_VALUE);
+
+    Pcm::Channel channel;
+
+    channel.Push(data, size, timestamp);
+    auto isZero  = [](uint8_t val) { return val == 0; };
+    auto isValue = [](uint8_t val) { return val == DEFAULT_VALUE; };
+
+    auto& frontChunk = channel.Queue.front();
+    ASSERT_EQ(frontChunk.Data.size(), Pcm::CHUNK_SIZE);
+    ASSERT_EQ(frontChunk.Timestamp, 0);
+    ASSERT_TRUE(std::all_of(frontChunk.Data.begin(), frontChunk.Data.begin() + quietSize, isZero));
+    ASSERT_TRUE(std::all_of(frontChunk.Data.begin() + quietSize, frontChunk.Data.end(), isValue));
+
+    auto& backChunk = channel.Queue.back();
+    ASSERT_EQ(backChunk.Data.size(), DEFAULT_SIZE * Pcm::SAMPLE_SIZE);
+    ASSERT_EQ(backChunk.Timestamp, Pcm::CHUNK_SIZE / Pcm::SAMPLE_SIZE);
+    ASSERT_TRUE(std::all_of(backChunk.Data.begin(),
+                            backChunk.Data.begin() + DEFAULT_SIZE * Pcm::SAMPLE_SIZE, isValue));
+}
+
 TEST(test_pcm_channel, push_to_empty_channel_lt_chunk_size_and_nonzero_timestamp_gt_chunk_size)
 {
     uint8_t data[ DEFAULT_SIZE ];
