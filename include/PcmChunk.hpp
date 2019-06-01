@@ -16,6 +16,7 @@ struct Chunk
 
     Chunk(const std::uint8_t* data, std::size_t size, std::size_t timestamp);
     Chunk(std::size_t size, std::size_t timestamp);
+    Chunk(std::size_t timestamp);
 
     Chunk(Chunk&& other) noexcept;
 

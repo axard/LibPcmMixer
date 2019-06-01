@@ -7,7 +7,7 @@
 
 namespace Pcm {
 
-Chunk Mix(const Chunk& a, const Chunk& b);
+Chunk Mix(const Chunk& a, const Chunk& b, ByteOrder byteOrder);
 
 int16_t Mix(int16_t a, int16_t b);
 

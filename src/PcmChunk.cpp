@@ -19,6 +19,12 @@ Chunk::Chunk(std::size_t size, std::size_t timestamp)
     }
 }
 
+Chunk::Chunk(std::size_t timestamp)
+    : Timestamp(timestamp)
+{
+    Data.reserve(CHUNK_SIZE);
+}
+
 Chunk::Chunk(Chunk&& other) noexcept
     : Data(std::move(other.Data))
     , Timestamp(other.Timestamp)
