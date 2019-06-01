@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.9.6)
 
 project(ExploadEntranceTest CXX)
 
-# Подключаем поддержку потоков, т.к. она нужна для тестирования
+if (NOT CMAKE_BUILD_TYPE)
+  message(STATUS "Select default build type: 'Release'")
+  set(CMAKE_BUILD_TYPE "Release")
+endif()
+
+# Подключаем поддержку потоков, т.к. она нужна для GTest
 find_package(Threads REQUIRED)
 find_package(GTest REQUIRED)
 
