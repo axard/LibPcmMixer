@@ -3,8 +3,6 @@
 #include <PcmMix.hpp>
 #include <algorithm>
 
-#include <iostream>
-
 namespace Pcm {
 
 Chunk Mix(const Chunk& a, const Chunk& b, ByteOrder byteOrder)
@@ -76,6 +74,9 @@ Chunk Mix(const Chunk& a, const Chunk& b, ByteOrder byteOrder)
 
 std::int16_t Mix(std::int16_t a, std::int16_t b)
 {
+    // Алгоритм смешивания взял здесь: https://stackoverflow.com/a/25102339
+    // и здесь http://www.vttoth.com/CMS/index.php/technical-notes/68
+
     static constexpr std::int32_t int16_max  = INT16_MAX + 1;
     static constexpr std::int32_t int16_half = (INT16_MAX + 1) / 2;
     static constexpr std::int32_t uint16_max = UINT16_MAX + 1;
@@ -98,6 +99,7 @@ std::int16_t Mix(std::int16_t a, std::int16_t b)
     if (isQuiet(au) && isQuiet(bu)) {
         mf = af * bf / int16_max;
     } else {
+        // Без этого доп условия "громкие" полностью противофазные семплы не будут обнуляться
         auto ru  = std::minmax(au, bu);
         auto dau = int16_max - ru.first;
         auto dbu = ru.second - int16_max;
