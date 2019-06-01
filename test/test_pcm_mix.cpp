@@ -2,8 +2,6 @@
 #include <PcmMix.hpp>
 #include <cstring>
 
-#include <iostream>
-
 TEST(test_pcm_mix_samples, with_both_silent)
 {
     int16_t a = 0;

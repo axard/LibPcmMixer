@@ -1,7 +1,6 @@
 #include <stdexcept>
 #include <PcmChannel.hpp>
 
-#include <iostream>
 namespace Pcm {
 
 void Channel::Push(const uint8_t* data, size_t size, size_t timestamp)
