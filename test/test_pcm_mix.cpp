@@ -59,7 +59,7 @@ TEST(test_pcm_mix_samples, with_one_silent_and_other_loud_max)
 
     int16_t m = Pcm::Mix(a, b);
 
-    ASSERT_EQ(m, a);
+    ASSERT_EQ(m, a / 2 + 1);
 }
 
 TEST(test_pcm_mix_samples, with_one_silent_and_other_loud_min)
@@ -69,7 +69,7 @@ TEST(test_pcm_mix_samples, with_one_silent_and_other_loud_min)
 
     int16_t m = Pcm::Mix(a, b);
 
-    ASSERT_EQ(m, a);
+    ASSERT_EQ(m, a / 2);
 }
 
 TEST(test_pcm_mix_chunks, in_little_endian_and_min)
